@@ -1,5 +1,7 @@
 {
   "name": "censsors",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
