@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-  { path: 'chat', loadChildren: () => import('./fluid/fluid.module').then( m => m.FluidPageModule)},
+  { path: 'chat/:text/:time', loadChildren: () => import('./fluid/fluid.module').then( m => m.FluidPageModule)},
 ];
 
 @NgModule({

@@ -37,7 +37,7 @@ export class HomePage {
       this.data.user.device_id = token;
       this.data.login().subscribe((user: User) => {
         this.data.user = user;
-        this.router.navigate(['/chat'])
+        this.router.navigate(['/chat', '', ''])
       }, (err) => {
         this.data.showToast(err.error.error);
       })

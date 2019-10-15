@@ -11,6 +11,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { AlertController, Platform } from '@ionic/angular';
 import { FCM } from '@ionic-native/fcm/ngx';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-fluid',
@@ -24,12 +25,17 @@ export class FluidPage implements OnInit {
   phone_model = 'iPhone';
   input = '';
   sender = 0;
-  constructor(private platform: Platform,
-    public alertController: AlertController, private menuCtrl: MenuController, private fcm: FCM,private changeDetectorRef:ChangeDetectorRef) { }
+  constructor(private platform: Platform, private router: Router, private route: ActivatedRoute,
+    public alertController: AlertController, private menuCtrl: MenuController, private fcm: FCM, private changeDetectorRef: ChangeDetectorRef) {
+    if (this.route.snapshot.params['text'] && this.route.snapshot.params['text'] != '') {
+      this.conversation.push({ text: this.route.snapshot.params['text'], time: this.route.snapshot.params['time'] });
+    };
+  }
 
   ngOnInit() {
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
+        //this.router.navigate(['/chat']);
         console.log("Received in background", data);
       } else {
         console.log("Received in foreground", data);

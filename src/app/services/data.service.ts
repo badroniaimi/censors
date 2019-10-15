@@ -8,8 +8,9 @@ import { ToastController } from '@ionic/angular';
 export class DataService {
   private baseUrl: string;
   public user: User;
+  public data;
   constructor(private http: HttpClient, private toastCtrl: ToastController) {
-    this.baseUrl = "http://192.168.1.12/api/v1/";
+    this.baseUrl = "http://192.168.1.116/api/v1/";
     this.user = new User();
   }
   getParents() {
