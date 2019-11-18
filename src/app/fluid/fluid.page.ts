@@ -1,3 +1,4 @@
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 /**
  * Chatter - Chat themes Ionic 4 (https://www.enappd.com)
  *
@@ -26,7 +27,8 @@ export class FluidPage implements OnInit {
   input = '';
   sender = 0;
   constructor(private platform: Platform, private router: Router, private route: ActivatedRoute,
-    public alertController: AlertController, private menuCtrl: MenuController, private fcm: FCM, private changeDetectorRef: ChangeDetectorRef) {
+    public alertController: AlertController, private menuCtrl: MenuController,
+     private fcm: FCM, private changeDetectorRef: ChangeDetectorRef,private tts: TextToSpeech) {
     if (this.route.snapshot.params['text'] && this.route.snapshot.params['text'] != '') {
       this.conversation.push({ text: this.route.snapshot.params['text'], time: this.route.snapshot.params['time'] });
     };
@@ -47,7 +49,11 @@ export class FluidPage implements OnInit {
       }, 10)
     });
   }
-
+  readMe(text){
+    this.tts.speak(text)
+    .then(() => console.log('Success'))
+    .catch((reason: any) => console.log(reason));
+  }
   ionViewDidEnter() {
     this.menuCtrl.enable(false, 'end');
     this.menuCtrl.enable(true, 'start');

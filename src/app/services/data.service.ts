@@ -10,7 +10,7 @@ export class DataService {
   public user: User;
   public data;
   constructor(private http: HttpClient, private toastCtrl: ToastController) {
-    this.baseUrl = "http://192.168.1.116/api/v1/";
+    this.baseUrl = "http://192.168.1.15/api/v1/";
     this.user = new User();
   }
   getParents() {
@@ -23,7 +23,7 @@ export class DataService {
     return this.http.post(this.baseUrl + "save", this.user);
   }
   async showToast(msg) {
-    let toast = await this.toastCtrl.create({
+    const toast = await this.toastCtrl.create({
       message: msg,
       duration: 3000,
       position: 'bottom'

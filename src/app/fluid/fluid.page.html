@@ -25,7 +25,7 @@
   <div id="chat-parent" class="bg-image" [ngClass]="{ 'bg-image-X': phone_model=='iPhone X'}">
     <div id="chat-container">
       <ion-row *ngFor="let conv of conversation; let i = index;" class="full no-padding">
-        <ion-col class="no-padding chat-row" [ngClass]="{ 'reverse': conv.sender}">
+        <ion-col class="no-padding chat-row" [ngClass]="{ 'reverse': conv.sender}" (click)="readMe(conv.text)">
           <div class="avatar-parent">
             <div class="avatar-border"></div>
             <img src="../../assets/images/logo.png" class="avatar">
